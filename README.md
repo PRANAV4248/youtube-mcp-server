@@ -90,8 +90,8 @@ To enable search functionality, you need a YouTube Data API v3 key:
 Clone the project locally and add your newly minted API key to a `.env` file at the root of the project:
 
 ```bash
-git clone <your-repo-link>
-cd "Youtube MCP"
+git clone https://github.com/PRANAV4248/youtube-mcp-server.git
+cd youtube-mcp-server
 echo "YOUTUBE_API_KEY=your_api_key_here" > .env
 ```
 
@@ -161,11 +161,15 @@ Once configured, Claude automatically understands how to leverage these tools ba
 - `set_playback_speed(speed)`: Adjust the speed multiplier natively.
 - `set_volume(level)`: Adjust the playback volume between 0 and 100.
 
-> 🔒 *All playback controls are fully shielded by a dedicated asynchronous message queue, making them completely thread-safe and resilient against Claude connection timeouts.*
-
 ---
 
 ## ⚠️ Known Limitations
 
 - **Transcripts**: The transcript extraction relies on the public API layer (`youtube-transcript-api`). It is powerful but might fail if a video lacks an English transcript or has captions disabled by the creator.
 - **Windows Library Bindings**: For `python-mpv` to work properly on Windows, it requires `libmpv`. If you get an mpv initialization warning inside Claude, ensure `mpv` is fully accessible in your device's global `PATH`!
+
+---
+
+**Created by - Pranav Choubey**
+Reach me out on -  [LinkedIn](https://www.linkedin.com/in/pranav-choubey)
+---------------------------
