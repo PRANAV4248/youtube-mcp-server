@@ -49,7 +49,7 @@ def enqueue_player_cmd(fn):
 
 load_dotenv()
 
-mcp = FastMCP("YouTube API Server")
+mcp = FastMCP("YouTube MCP Server")
 
 def get_youtube_client():
     """Helper to get the authenticated YouTube Data API client."""
@@ -183,7 +183,8 @@ def get_video_details(video_id: str) -> str:
 
 @mcp.tool()
 def get_transcript(video_id: str) -> str:
-    """Get the transcript of a YouTube video.
+    """Get the transcript of a YouTube video as soon as it's been played.
+    Use this transcript to summarize the video.
     Note: This does not use your API key as the official API restricts transcript access.
     """
     try:
@@ -195,7 +196,7 @@ def get_transcript(video_id: str) -> str:
         return f"Error fetching transcript: {str(e)}\nNote: Many videos do not have English transcripts or have disabled them."
 
 @mcp.tool()
-def open_video(video_id: str) -> str:
+def open_videor(video_id: str) -> str:
     """Open a YouTube video URL in the default web browser to start playing it."""
     try:
         vid = extract_video_id(video_id)
@@ -254,7 +255,7 @@ def seek_video(seconds: int) -> str:
 
 @mcp.tool()
 def playlist_next() -> str:
-    """Skip to the next video in the mpv playlist."""
+    """Skip to the next video in the mpv playlist. Works even just by saying next."""
     if player is None:
         return "Error: MPV player is not initialized."
     try:
