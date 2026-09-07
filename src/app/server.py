@@ -27,10 +27,11 @@ def get_player():
         pass
     try:
         import mpv
-        player = mpv.MPV(ytdl=True, input_default_bindings=True, input_vo_keyboard=True, config=True, load_scripts=True, osc=False, hidpi_window_scale=True, keepaspect_window=False, autofit="100%x100%")
+        player = mpv.MPV(ytdl=True, input_default_bindings=True, input_vo_keyboard=True, config=True, load_scripts=True, osc=False, hidpi_window_scale=True, idle=True)
         try:
-            player.command("keybind", "CLOSE_WIN", "stop")
-            player.command("keybind", "q", "stop")
+            player.keybind("MBTN_LEFT", "cycle pause")
+            player.keybind("CLOSE_WIN", "stop")
+            player.keybind("q", "stop")
         except Exception:
             pass
         return player
@@ -164,7 +165,7 @@ def playlist_prev() -> str:
 @mcp.tool()
 def stop_video() -> str:
     """Stop playback and clear the mpv playlist."""
-    return player_action(lambda player: player.command("stop"), "Playback stopped.")
+    return player_action(lambda player: player.stop(), "Playback stopped.")
 
 @mcp.tool()
 def enqueue_video(query_or_url: str) -> str:
